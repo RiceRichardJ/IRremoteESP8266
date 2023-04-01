@@ -32,7 +32,7 @@
 #include <IRremoteESP8266.h>
 #include <IRsend.h>
 
-const uint16_t kIrLed = 4;  // ESP8266 GPIO pin to use. Recommended: 4 (D2).
+const uint16_t kIrLed = 14;  // ESP8266 GPIO pin to use. Recommended: 4 (D2).
 
 IRsend irsend(kIrLed);  // Set the GPIO to be used to sending the message.
 
@@ -56,19 +56,24 @@ void setup() {
 #else  // ESP8266
   Serial.begin(115200, SERIAL_8N1);
 #endif  // ESP8266
+
+  #define POWER_EN 22
+  pinMode(POWER_EN, OUTPUT);
+  digitalWrite(POWER_EN, HIGH);
 }
 
 void loop() {
   Serial.println("NEC");
   irsend.sendNEC(0x00FFE01FUL);
-  delay(2000);
+  delay(1000);
   Serial.println("Sony");
-  irsend.sendSony(0xa90, 12, 2);  // 12 bits & 2 repeats
-  delay(2000);
-  Serial.println("a rawData capture from IRrecvDumpV2");
-  irsend.sendRaw(rawData, 67, 38);  // Send a raw data capture at 38kHz.
-  delay(2000);
-  Serial.println("a Samsung A/C state from IRrecvDumpV2");
-  irsend.sendSamsungAC(samsungState);
-  delay(2000);
+  // irsend.sendSony(0xa90, 12, 2);  // 12 bits & 2 repeats
+  irsend.sendSony(0xa90, 12, 1);
+  delay(1000);
+  // Serial.println("a rawData capture from IRrecvDumpV2");
+  // irsend.sendRaw(rawData, 67, 38);  // Send a raw data capture at 38kHz.
+  // delay(2000);
+  // Serial.println("a Samsung A/C state from IRrecvDumpV2");
+  // irsend.sendSamsungAC(samsungState);
+  // delay(2000);
 }

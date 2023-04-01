@@ -101,8 +101,11 @@
 //      Kelvinator protocol, you would use:
 //        `-DDECODE_KELVINATOR=false`
 #ifndef _IR_ENABLE_DEFAULT_
-#define _IR_ENABLE_DEFAULT_ true  // Unless set externally, the default is on.
+#define _IR_ENABLE_DEFAULT_ false // true  // Unless set externally, the default is on.
 #endif  // _IR_ENABLE_DEFAULT_
+
+#define DECODE_NEC            true //////////
+#define SEND_NEC              true //////////
 
 // Supported IR protocols
 // Each protocol you include costs memory and, during decode, costs time
@@ -1484,19 +1487,22 @@ const uint16_t kClimaButlerBits = 52;
 // Turn on Debugging information by uncommenting the following line.
 // #define DEBUG 1
 
-#ifdef DEBUG
-#ifdef UNIT_TEST
-#define DPRINT(x) do { std::cout << x; } while (0)
-#define DPRINTLN(x) do { std::cout << x << std::endl; } while (0)
-#endif  // UNIT_TEST
-#ifdef ARDUINO
+// #ifdef DEBUG
+// #ifdef UNIT_TEST
+// #define DPRINT(x) do { std::cout << x; } while (0)
+// #define DPRINTLN(x) do { std::cout << x << std::endl; } while (0)
+// #endif  // UNIT_TEST
+// #ifdef ARDUINO
+// #define DPRINT(x) do { Serial.print(x); } while (0)
+// #define DPRINTLN(x) do { Serial.println(x); } while (0)
+// #endif  // ARDUINO
+// #else  // DEBUG
+// #define DPRINT(x)
+// #define DPRINTLN(x)
+// #endif  // DEBUG
+
 #define DPRINT(x) do { Serial.print(x); } while (0)
 #define DPRINTLN(x) do { Serial.println(x); } while (0)
-#endif  // ARDUINO
-#else  // DEBUG
-#define DPRINT(x)
-#define DPRINTLN(x)
-#endif  // DEBUG
 
 #ifdef UNIT_TEST
 #ifndef F

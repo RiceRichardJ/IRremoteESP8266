@@ -28,7 +28,7 @@
 #ifdef ARDUINO_ESP32C3_DEV
 const uint16_t kRecvPin = 10;  // 14 on a ESP32-C3 causes a boot loop.
 #else  // ARDUINO_ESP32C3_DEV
-const uint16_t kRecvPin = 14;
+const uint16_t kRecvPin = 4; //14;
 #endif  // ARDUINO_ESP32C3_DEV
 
 IRrecv irrecv(kRecvPin);
@@ -37,6 +37,7 @@ decode_results results;
 
 void setup() {
   Serial.begin(115200);
+  Serial.println("Begin IRrecvDemo...");
   irrecv.enableIRIn();  // Start the receiver
   while (!Serial)  // Wait for the serial connection to be establised.
     delay(50);
