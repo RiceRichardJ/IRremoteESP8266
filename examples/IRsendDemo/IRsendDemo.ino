@@ -66,10 +66,10 @@ void loop() {
   Serial.println("NEC");
   irsend.sendNEC(0x00FFE01FUL);
   delay(1000);
-  Serial.println("Sony");
+  // Serial.println("Sony");
   // irsend.sendSony(0xa90, 12, 2);  // 12 bits & 2 repeats
-  irsend.sendSony(0xa90, 12, 1);
-  delay(1000);
+  // irsend.sendSony(0xa90, 12, 1);
+  // delay(1000);
   // Serial.println("a rawData capture from IRrecvDumpV2");
   // irsend.sendRaw(rawData, 67, 38);  // Send a raw data capture at 38kHz.
   // delay(2000);
